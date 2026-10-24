@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StopCell - Accesorios & Celulares</title>
+  
+  <!-- FontAwesome / Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-dark-core: #090a0f;
+      --bg-dark-card: rgba(18, 20, 29, 0.75);
+      --red-primary: #e60012;
+      --red-glow: #ff2a3b;
+      --red-dark: #80000a;
+      --text-light: #f8f9fa;
+      --text-muted: #a0a5b5;
+      --border-tech: rgba(230, 0, 18, 0.35);
+      --font-title: 'Orbitron', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark-core);
+      color: var(--text-light);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(230, 0, 18, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(230, 0, 18, 0.05) 0%, transparent 40%);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-title);
+      color: var(--text-light);
+      letter-spacing: 1px;
+    }
+
+    span.tech-red {
+      color: var(--red-glow);
+      text-shadow: 0 0 10px rgba(230, 0, 18, 0.5);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .bg-tech-dark {
+      background-color: rgba(12, 13, 20, 0.6);
+      border-top: 1px solid var(--border-tech);
+      border-bottom: 1px solid var(--border-tech);
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .sub-title {
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      color: var(--red-glow);
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+
+    .red-divider {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--red-primary), transparent);
+      margin: 15px auto 30px;
+      box-shadow: 0 0 8px var(--red-glow);
+    }
+
+    /* BOTONES */
+    .btn-red {
+      background: linear-gradient(135deg, var(--red-primary), var(--red-dark));
+      color: #ffffff;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--red-glow);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(230, 0, 18, 0.4);
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    .btn-red:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba(255, 42, 59, 0.7);
+      background: linear-gradient(135deg, var(--red-glow), var(--red-primary));
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border-tech);
+      color: var(--text-light);
+      padding: 10px 26px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--red-glow);
+      color: var(--red-glow);
+      box-shadow: 0 0 15px rgba(230, 0, 18, 0.2);
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(9, 10, 15, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-tech);
+      z-index: 1000;
+      padding: 12px 0;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-logo img {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      border: 1px solid var(--red-primary);
+      box-shadow: 0 0 10px rgba(230, 0, 18, 0.4);
+      object-fit: cover;
+    }
+
+    .brand-name {
+      font-family: var(--font-title);
+      font-size: 1.3rem;
+      color: var(--text-light);
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .nav-links a:hover {
+      color: var(--red-glow);
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--red-glow);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero-section {
+      position: relative;
+      min-height: 85vh;
+      background: url('iPhone 17 Pro Max_ Potencia y Revolución.png') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 80px;
+      text-align: center;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(9, 10, 15, 0.85) 0%, rgba(9, 10, 15, 0.95) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 850px;
+      padding: 0 20px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(230, 0, 18, 0.15);
+      border: 1px solid var(--red-primary);
+      color: var(--red-glow);
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .hero-content h1 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* DUEÑO SECTION */
+    .owner-card {
+      background: var(--bg-dark-card);
+      border: 1px solid var(--border-tech);
+      border-radius: 16px;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 40px;
+      align-items: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .owner-image-wrapper {
+      position: relative;
+    }
+
+    .owner-image-placeholder {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--red-primary);
+      box-shadow: 0 0 20px rgba(230, 0, 18, 0.3);
+    }
+
+    .owner-image-placeholder img {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+    }
+
+    .owner-badge {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      background: var(--red-primary);
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+    }
+
+    .owner-info h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .owner-bio {
+      color: var(--text-muted);
+      margin-bottom: 25px;
+    }
+
+    .owner-features {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .feature-item {
+      background: rgba(230, 0, 18, 0.1);
+      border: 1px solid var(--border-tech);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    /* SERVICIOS / BENEFICIOS */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+    }
+
+    .service-card {
+      background: var(--bg-dark-card);
+      border: 1px solid var(--border-tech);
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--red-glow);
+      box-shadow: 0 0 20px rgba(230, 0, 18, 0.2);
+    }
+
+    .service-icon {
+      font-size: 2.2rem;
+      color: var(--red-glow);
+      margin-bottom: 15px;
+    }
+
+    .service-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    /* GALERÍA / PRODUCTOS */
+    .gallery-filters {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1px solid var(--border-tech);
+      color: var(--text-light);
+      padding: 8px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--red-primary);
+      color: #ffffff;
+      border-color: var(--red-glow);
+      box-shadow: 0 0 10px rgba(230, 0, 18, 0.4);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 320px;
+      border: 1px solid var(--border-tech);
+      cursor: pointer;
+      background: #000;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(9, 10, 15, 0.85);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: 0.3s ease;
+      color: var(--text-light);
+      gap: 10px;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay i {
+      font-size: 1.8rem;
+      color: var(--red-glow);
+    }
+
+    /* FORMULARIO RESERVAS / CONSULTAS */
+    .booking-wrapper {
+      max-width: 650px;
+      margin: 0 auto;
+      background: var(--bg-dark-card);
+      border: 1px solid var(--border-tech);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .booking-form .form-group {
+      margin-bottom: 20px;
+    }
+
+    .booking-form label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.88rem;
+      color: var(--text-light);
+    }
+
+    .booking-form input, .booking-form select {
+      width: 100%;
+      padding: 12px 15px;
+      background: rgba(9, 10, 15, 0.8);
+      border: 1px solid var(--border-tech);
+      border-radius: 6px;
+      color: var(--text-light);
+      outline: none;
+    }
+
+    .booking-form input:focus, .booking-form select:focus {
+      border-color: var(--red-glow);
+      box-shadow: 0 0 10px rgba(230, 0, 18, 0.3);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .btn-block {
+      width: 100%;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 10px;
+      border: 1px solid var(--red-glow);
+      box-shadow: 0 0 30px rgba(230,0,18,0.4);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 25px;
+      right: 35px;
+      font-size: 2.5rem;
+      color: var(--red-glow);
+      cursor: pointer;
+    }
+
+    .lightbox-caption {
+      margin-top: 15px;
+      color: var(--text-light);
+      font-size: 1.1rem;
+      font-family: var(--font-title);
+    }
+
+    /* WHATSAPP FLOAT */
+    .whatsapp-float-container {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 1500;
+    }
+
+    .whatsapp-float-btn {
+      width: 60px;
+      height: 60px;
+      background: #25d366;
+      color: #fff;
+      border-radius: 50%;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+      transition: 0.3s;
+    }
+
+    .whatsapp-float-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .whatsapp-popup {
+      display: none;
+      position: absolute;
+      bottom: 75px;
+      right: 0;
+      width: 300px;
+      background: #0d0f17;
+      border: 1px solid var(--border-tech);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    }
+
+    .whatsapp-popup.active {
+      display: block;
+    }
+
+    .wa-popup-header {
+      background: var(--red-primary);
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .wa-popup-header img {
+      width: 35px;
+      height: 35px;
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    .wa-popup-header h4 {
+      font-size: 0.85rem;
+      margin: 0;
+    }
+
+    .wa-popup-header span {
+      font-size: 0.7rem;
+      color: #fff;
+      opacity: 0.9;
+    }
+
+    .wa-popup-header button {
+      margin-left: auto;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .wa-popup-body {
+      padding: 15px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .wa-popup-btn {
+      display: block;
+      background: #25d366;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      background: #050608;
+      padding: 40px 0;
+      border-top: 1px solid var(--border-tech);
+    }
+
+    .footer-logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      border: 1px solid var(--red-primary);
+      margin-bottom: 10px;
+    }
+
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .footer-socials a {
+      color: var(--red-glow);
+      font-size: 1.2rem;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border-tech);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s;
+      text-decoration: none;
+    }
+
+    .footer-socials a:hover {
+      background: var(--red-primary);
+      color: #ffffff;
+      box-shadow: 0 0 10px var(--red-glow);
+    }
+
+    .copyright {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .owner-card {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(9, 10, 15, 0.98);
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .mobile-toggle {
+        display: block;
+      }
+      .nav-btn {
+        display: none;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVEGACIÓN -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="brand-logo">
+        <img src="logo2.jpeg" alt="StopCell Logo" />
+        <span class="brand-name">STOP<span class="tech-red">CELL</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Inicio</a></li>
+        <li><a href="#owner">Nosotros</a></li>
+        <li><a href="#services">Garantías</a></li>
+        <li><a href="#catalog">Catálogo</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+      <a href="#contact" class="btn-red nav-btn"><i class="fa-solid fa-mobile-screen"></i> Pedir Producto</a>
+      <button class="mobile-toggle" id="mobileMenuBtn">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <header id="home" class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fa-solid fa-bolt"></i> La diferencia en accesorios y celulares</div>
+      <h1>La diferencia <span class="tech-red">en accesorios y celulares</span></h1>
+      <p>Celulares, laptops, tablets y accesorios 100% originales con garantía local.</p>
+      <div class="hero-buttons">
+        <a href="#catalog" class="btn-red"><i class="fa-solid fa-store"></i> Ver Catálogo</a>
+        <a href="#contact" class="btn-outline"><i class="fa-brands fa-whatsapp"></i> Consultar Disponibilidad</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- SECCIÓN DEL DUEÑO / TIENDA -->
+  <section id="owner" class="section owner-section">
+    <div class="container">
+      <div class="owner-card">
+        <div class="owner-image-wrapper">
+          <div class="owner-image-placeholder">
+            <img id="ownerPhoto" src="dueño.jpeg" alt="Dueño de StopCell en Tienda" />
+            <div class="owner-badge"><i class="fa-solid fa-circle-check"></i> Tienda Oficial</div>
+          </div>
+        </div>
+        <div class="owner-info">
+          <span class="sub-title">Atención Personalizada</span>
+          <h2>20 Años de Experiencia <span class="tech-red">y Confianza</span></h2>
+          <p class="owner-bio">
+            Con más de 20 años de trayectoria en la ciudad de La Romana, me he dedicado con pasión y compromiso al área de reparación de celulares, venta de teléfonos móviles y accesorios. A lo largo de estos años, he adquirido la experiencia y los conocimientos necesarios para ofrecer un servicio de calidad, soluciones confiables y una atención personalizada. Mi principal compromiso es brindarles a mis clientes la seguridad, confianza y garantía de un trabajo realizado con responsabilidad y profesionalismo, construyendo relaciones duraderas basadas en la honestidad, la experiencia y la satisfacción de cada persona que nos elige.
+          </p>
+          <div class="owner-features">
+            <div class="feature-item"><i class="fa-solid fa-shield-halved"></i> 100% Originales</div>
+            <div class="feature-item"><i class="fa-solid fa-award"></i> Garantía Local</div>
+            <div class="feature-item"><i class="fa-solid fa-star"></i> Atención Profesional</div>
+          </div>
+          <a href="#contact" class="btn-red"><i class="fa-brands fa-whatsapp"></i> Hablar con la Tienda</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFICIOS Y GARANTÍAS -->
+  <section id="services" class="section bg-tech-dark">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="sub-title">¿Por qué elegirnos?</span>
+        <h2>Beneficios <span class="tech-red">StopCell</span></h2>
+        <div class="red-divider"></div>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <i class="fa-solid fa-shield-heart service-icon"></i>
+          <h3>Garantía Real</h3>
+          <p>Soporte y respuesta local en todos nuestros equipos y accesorios.</p>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-circle-check service-icon"></i>
+          <h3>Productos Originales</h3>
+          <p>Equipos sellados y autenticidad 100% verificada.</p>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-microchip service-icon"></i>
+          <h3>Última Generación</h3>
+          <p>Laptops, tablets y celulares recién lanzados al mercado internacional.</p>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-handshake service-icon"></i>
+          <h3>Asesoría Directa</h3>
+          <p>Te ayudamos a elegir el equipo ideal según tus necesidades y presupuesto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATÁLOGO DE PRODUCTOS -->
+  <section id="catalog" class="section">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="sub-title">Catálogo Oficial</span>
+        <h2>Productos <span class="tech-red">Destacados</span></h2>
+        <div class="red-divider"></div>
+      </div>
+
+      <!-- Filtros -->
+      <div class="gallery-filters">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="apple">iPhones / Apple</button>
+        <button class="filter-btn" data-filter="samsung">Android / Samsung</button>
+        <button class="filter-btn" data-filter="computing">Laptops & Tablets</button>
+        <button class="filter-btn" data-filter="accessories">Accesorios</button>
+      </div>
+
+      <!-- Grid de Productos -->
+      <div class="gallery-grid">
+        <div class="gallery-item" data-category="apple">
+          <img src="iPhone 17 Pro Max_ Potencia y Revolución.png" alt="iPhone 17 Pro Max" />
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>iPhone 17 Pro Max (256GB)</span></div>
+        </div>
+        <div class="gallery-item" data-category="apple">
+          <img src="Publicidad del iPhone 16 Pro Max.png" alt="iPhone 16 Pro Max" />
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>iPhone 16 Pro Max (256GB)</span></div>
+        </div>
+        <div class="gallery-item" data-category="apple">
+          <img src="Gemini_Generated_Image_2yfbq02yfbq02yfb.jpg" alt="iPhone 15 Pro Max" />
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>iPhone 15 Pro Max (256GB)</span></div>
+        </div>
+        <div class="gallery-item" data-category="apple">
+          <img src="Gemini_Generated_Image_24wewu24wewu24we.jpg" alt="iPhone 15 Plus" />
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>iPhone 15 Plus (128GB)</span></div>
+        </div>
+        <div class="gallery-item" data-category="samsung">
+          <img src="Gemini_Generated_Image_6h0jxy6h0jxy6h0j.jpg" alt="Samsung Galaxy S24 Ultra" />
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>Samsung Galaxy S24 Ultra</span></div>
+        </div>
+        <div class="gallery-item" data-category="samsung">
+          <img src="Publicidad tecnológica del Samsung S23+.png" alt="Samsung Galaxy S23+" />
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>Samsung Galaxy S23+</span></div>
+        </div>
+        <div class="gallery-item" data-category="computing">
+          <img src="Gemini_Generated_Image_5fou2q5fou2q5fou.jpg" alt="Redmi Pad 2" />
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>Redmi Pad 2 (128GB)</span></div>
+        </div>
+        <div class="gallery-item" data-category="computing apple">
+          <img src="MacBook Pro_ Potencia y rendimiento.png" alt="MacBook Pro" />
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>MacBook Pro 13" (16GB RAM)</span></div>
+        </div>
+        <div class="gallery-item" data-category="computing">
+          <img src="Anuncio Dell Inspiron con Diseño Moderno.png" alt="Dell Inspiron 15" />
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>Dell Inspiron 15 5501</span></div>
+        </div>
+        <div class="gallery-item" data-category="computing">
+          <img src="Anuncio moderno HP EliteBook 840 G7.png" alt="HP EliteBook 840 G7" />
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>HP EliteBook 840 G7</span></div>
+        </div>
+        <div class="gallery-item" data-category="apple accessories">
+          <img src="Apple Watch Serie 11_ Tecnología Siempre.png" alt="Apple Watch Serie 11" />
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>Apple Watch Serie 11 (42mm)</span></div>
+        </div>
+        <div class="gallery-item" data-category="accessories">
+          <img src="Bocina inalámbrica OTU BS-31.png" alt="Bocina OTU BS-31" />
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>Bocina Inalámbrica OTU BS-31</span></div>
+        </div>
+        <div class="gallery-item" data-category="apple">
+          <img src="Elegante anuncio del iPad A16.png" alt="iPhone 15 Plus" />
+          <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><span>iPad A16 (256GB)</span></div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULARIO DE CONSULTAS / PEDIDOS -->
+  <section id="contact" class="section bg-tech-dark">
+    <div class="container">
+      <div class="booking-wrapper">
+        <div class="section-header text-center">
+          <span class="sub-title">Atención al Cliente</span>
+          <h2>Solicitar <span class="tech-red">Información / Pedido</span></h2>
+          <p>Selecciona el producto que deseas y te responderemos de inmediato por WhatsApp.</p>
+        </div>
+        <form class="booking-form" id="bookingForm">
+          <div class="form-group">
+            <label><i class="fa-solid fa-user"></i> Nombre Completo</label>
+            <input type="text" id="clientName" placeholder="Tu nombre..." required />
+          </div>
+          <div class="form-group">
+            <label><i class="fa-solid fa-phone"></i> Teléfono / WhatsApp</label>
+            <input type="tel" id="clientPhone" placeholder="Tu número de contacto..." required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label><i class="fa-solid fa-mobile-screen-button"></i> Producto de Interés</label>
+              <select id="serviceSelect" required>
+                <option value="iPhone 17 Pro Max">iPhone 17 Pro Max</option>
+                <option value="iPhone 16 Pro Max">iPhone 16 Pro Max</option>
+                <option value="iPhone 15 Pro Max / 15 Plus">iPhone 15 Series</option>
+                <option value="Samsung Galaxy S24 Ultra / S23+">Samsung Galaxy Series</option>
+                <option value="MacBook Pro / Dell / HP Laptop">Laptop (Mac / Dell / HP)</option>
+                <option value="Redmi Pad 2 / Apple Watch">Tablet / Smartwatch</option>
+                <option value="Bocinas / Accesorios Varios">Bocina OTU / Accesorios</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label><i class="fa-solid fa-location-dot"></i> Ciudad / Sector</label>
+              <input type="text" id="clientLocation" placeholder="Tu ubicación..." required />
+            </div>
+          </div>
+          <button type="submit" class="btn-red btn-block"><i class="fa-brands fa-whatsapp"></i> Consultar por WhatsApp</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container text-center">
+      <img src="logo.jpeg" alt="StopCell Logo" class="footer-logo" />
+      <h3>STOPCELL</h3>
+      <p>La diferencia en accesorios y celulares</p>
+      <div class="footer-socials">
+        <a href="https://wa.me/18098358327" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/stopcell0/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      </div>
+      <p class="copyright">&copy; 2026 StopCell. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <img id="lightboxImg" src="" alt="Producto Ampliado" />
+    <div id="lightboxCaption" class="lightbox-caption"></div>
+  </div>
+
+  <!-- BOTÓN FLOTANTE Y POPUP DE WHATSAPP -->
+  <div class="whatsapp-float-container">
+    <div class="whatsapp-popup" id="waPopup">
+      <div class="wa-popup-header">
+        <img src="logo2.jpeg" alt="StopCell" />
+        <div>
+          <h4>StopCell Tienda</h4>
+          <span>En línea • Respuesta rápida</span>
+        </div>
+        <button id="waCloseBtn">&times;</button>
+      </div>
+      <div class="wa-popup-body">
+        <p>👋 ¡Hola! ¿Buscas algún equipo o accesorio en específico? ¡Escríbenos!</p>
+      </div>
+      <a id="waDirectBtn" href="https://wa.me/18098358327?text=Hola%20StopCell,%20quisiera%20consultar%20por%20un%20producto." target="_blank" class="wa-popup-btn">
+        <i class="fa-brands fa-whatsapp"></i> Chat Directo de WhatsApp
+      </a>
+    </div>
+    <button class="whatsapp-float-btn" id="waFloatBtn" title="Chatear por WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+    </button>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Menú Móvil Toggle
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const navLinks = document.getElementById('navLinks');
+
+      if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+        });
+      }
+
+      // 2. Filtro Dinámico del Catálogo
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const galleryItems = document.querySelectorAll('.gallery-item');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const filterValue = btn.getAttribute('data-filter');
+
+          galleryItems.forEach(item => {
+            const categories = item.getAttribute('data-category');
+            if (filterValue === 'all' || categories.includes(filterValue)) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // 3. Modal Lightbox para Fichas de Producto
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const lightboxCaption = document.getElementById('lightboxCaption');
+      const lightboxClose = document.getElementById('lightboxClose');
+
+      galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const img = item.querySelector('img');
+          const caption = item.querySelector('.gallery-overlay span').innerText;
+          lightboxImg.src = img.src;
+          lightboxCaption.innerText = caption;
+          lightbox.classList.add('active');
+        });
+      });
+
+      lightboxClose.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+      });
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          lightbox.classList.remove('active');
+        }
+      });
+
+      // 4. Formulario de Pedidos directo a WhatsApp
+      const bookingForm = document.getElementById('bookingForm');
+
+      bookingForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('clientName').value;
+        const phone = document.getElementById('clientPhone').value;
+        const product = document.getElementById('serviceSelect').value;
+        const location = document.getElementById('clientLocation').value;
+
+        // Número configurado: 809-835-8327
+        const whatsappNum = "18098358327"; 
+        
+        const message = `*SOLICITUD DE PRODUCTO - STOPCELL*%0A` +
+                        `*Nombre:* ${encodeURIComponent(name)}%0A` +
+                        `*Teléfono:* ${encodeURIComponent(phone)}%0A` +
+                        `*Producto:* ${encodeURIComponent(product)}%0A` +
+                        `*Ubicación:* ${encodeURIComponent(location)}`;
+
+        window.open(`https://wa.me/${whatsappNum}?text=${message}`, '_blank');
+      });
+
+      // 5. Botón Flotante y Popup de WhatsApp
+      const waFloatBtn = document.getElementById('waFloatBtn');
+      const waPopup = document.getElementById('waPopup');
+      const waCloseBtn = document.getElementById('waCloseBtn');
+
+      waFloatBtn.addEventListener('click', () => {
+        waPopup.classList.toggle('active');
+      });
+
+      waCloseBtn.addEventListener('click', () => {
+        waPopup.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
